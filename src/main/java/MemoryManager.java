@@ -3,7 +3,7 @@ public class MemoryManager
    protected MemoryAllocation head;
     
    protected final String Free = "Free";
-
+   private long size;
 
     /* size- how big is the memory space.  
      *  Memory starts at 0
@@ -11,7 +11,7 @@ public class MemoryManager
      */
    public MemoryManager(long size)
    {
-   
+	   this.size = size;
    }
 
 
@@ -36,6 +36,12 @@ public class MemoryManager
      */
    public void returnMemory(MemoryAllocation mem)
    {
+	   MemoryAllocation current = head;
+	   merge(current);
+   }
+   
+   private void merge(MemoryAllocation Node) {
+	   
    }
     
 

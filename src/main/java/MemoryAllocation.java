@@ -5,7 +5,8 @@ public class MemoryAllocation
     String owner;  //which process owns this memory
     long pos;      //where does it start
     long len;      //how long is the memory
-
+    MemoryAllocation next;
+    MemoryAllocation prev;
 
 
     //You might want to add additional data/methods here
