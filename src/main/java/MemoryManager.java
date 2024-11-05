@@ -37,10 +37,10 @@ public class MemoryManager
    public void returnMemory(MemoryAllocation mem)
    {
 	   MemoryAllocation current = head;
-	   merge(current);
+	   MergeMem(current);
    }
    
-   private void merge(MemoryAllocation Node) {
+   private void MergeMem(MemoryAllocation Node) {
 	   
    }
     
