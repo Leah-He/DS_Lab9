@@ -12,8 +12,8 @@ public class MemoryManager
    {
 	   this.size = size;
 	   head = new MemoryAllocation(Free, 0, size);
-	   head.next = head;
-	   head.prev = head;
+	   head.next = null;
+	   head.prev = null;
    }
 
 
@@ -33,8 +33,9 @@ public class MemoryManager
 			   if (curr.len > size) {
 				   //cuz the len larger than size, there will be
 				   //some free space left, so we need new node to hold the left
-				   MemoryAllocation newNode = new MemoryAllocation(Free, 
-						   curr.pos+size, curr.len-size);
+				   MemoryAllocation newNode = new MemoryAllocation(Free, curr.pos+size, curr.len-size);
+				   newNode.next = curr.next;
+                   newNode.prev = curr;
 				   if (curr.next != null) {
 					   curr.next.prev = newNode;
 				   }
@@ -78,8 +79,9 @@ public class MemoryManager
 		   if (mem.next != null) {
 			   mem.next.prev = mem.prev;
 		   }
-		   mem = mem.next.prev;
+		   mem = mem.prev;
 	   }
+	   
 	   //merge right
 	   if (mem.next != null && mem.next.owner.equals(Free)){
 		   mem.len += mem.next.len;
@@ -88,10 +90,6 @@ public class MemoryManager
 			   mem.next.prev = mem;
 		   }
 	   }
-	   
    }
-    
-
-
 
 }
